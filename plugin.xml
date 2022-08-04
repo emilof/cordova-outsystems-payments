@@ -6,15 +6,41 @@
   <js-module name="OSPayments" src="www/OSPayments.js">
     <clobbers target="cordova.plugins.OSPayments"/>
   </js-module>
+
   <platform name="android">
+
+    <hook type="after_prepare" src="hooks/android/androidCopyPreferences.js" />
+
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="OSPayments">
         <param name="android-package" value="com.outsystems.payments.OSPayments"/>
       </feature>
+      <preference name="GradlePluginKotlinEnabled" value="true" />
+      <preference name="GradlePluginKotlinCodeStyle" value="official" />
+      <preference name="AndroidXEnabled" value="true"/>
     </config-file>
-    <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/com/outsystems/payments/OSPayments.java" target-dir="src/com/outsystems/payments"/>
+
+    <config-file parent="/manifest/application" target="AndroidManifest.xml">
+      <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
+    </config-file>
+
+    <config-file parent="/resources" target="res/values/strings.xml">
+      <string name="merchant_name">MERCHANT_NAME</string>
+      <string name="merchant_country_code">MERCHANT_COUNTRY_CODE</string>
+      <string name="payment_allowed_networks">ALLOWED_NETWORKS</string>
+      <string name="payment_supported_capabilities">SUPPORTED_CAPABILITIES</string>
+      <string name="payment_supported_card_countries">SUPPORTED_CARD_COUNTRIES</string>
+      <string name="shipping_supported_contacts">SHIPPING_SUPPORTED_CONTACTS</string>
+      <string name="billing_supported_contacts">BILLING_SUPPORTED_CONTACTS</string>
+      <string name="tokenization">TOKENIZATION</string>
+    </config-file>
+
+    <source-file src="src/android/com/outsystems/payments/OSPayments.kt" target-dir="app/src/main/kotlin/com/outsystems/payments"/>
+    <resource-file src="src/android/lib/OSPaymentsLib.aar" target="libs/OSPaymentsLib.aar" />
+    <framework src="src/android/com/outsystems/payments/build.gradle" custom="true" type="gradleReference" />
+
   </platform>
+
   <platform name="ios">
     <!-- Hooks -->
     <hook type="after_prepare" src="hooks/ios/iOSCopyPreferences.js" />
@@ -88,4 +114,5 @@
     <framework src="src/ios/frameworks/OSCore.xcframework" embed="true" custom="true" />
 
   </platform>
+
 </plugin>
