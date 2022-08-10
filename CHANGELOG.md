@@ -8,8 +8,14 @@ The changes documented here do not include those from the original repository.
 
 ## [Unreleased]
 
+## 09-08-2022
+Android - implemented isReadyToPay for Google Pay (https://outsystemsrd.atlassian.net/browse/RMET-790)
+
 ## 2022-08-08
 - Android - added field verification to fail build if fields are missing in JSON config file (https://outsystemsrd.atlassian.net/browse/RMET-1721)
+
+## 03-08-2022
+Android - implementated setupConfiguration method for Android (https://outsystemsrd.atlassian.net/browse/RMET-1721)
 
 ## 2022-08-03
 - Android - implementated setupConfiguration method for Android (https://outsystemsrd.atlassian.net/browse/RMET-1721)
