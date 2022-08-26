@@ -1,5 +1,13 @@
 var exec = require('cordova/exec');
 
-exports.coolMethod = function (arg0, success, error) {
-    exec(success, error, 'OSPayments', 'coolMethod', [arg0]);
+exports.setupConfiguration = function(paymentEnvironment, success, error) {
+    exec(success, error, 'OSPayments', 'setupConfiguration', [paymentEnvironment]);
 };
+
+exports.checkWalletSetup = function(success, error) {
+    exec(success, error, 'OSPayments', 'checkWalletSetup');
+};
+
+exports.setDetails = function(paymentDetails, success, error) {
+    exec(success, error, 'OSPayments', 'setDetails', [paymentDetails]);
+}
